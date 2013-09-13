@@ -367,7 +367,8 @@ namespace ArdupilotMega.GCSViews
             drawnpolygons = new GMapOverlay(MainMap, "drawnpolygons");
             MainMap.Overlays.Add(drawnpolygons);
 
-
+            alternateRTLLocations = new GMapOverlay(MainMap, "alternateRTLLocations");
+            MainMap.Overlays.Add(alternateRTLLocations);
 
             top = new GMapOverlay(MainMap, "top");
             //MainMap.Overlays.Add(top);
@@ -1888,6 +1889,9 @@ namespace ArdupilotMega.GCSViews
         GMapOverlay drawnpolygons;
         GMapOverlay kmlpolygons;
         GMapOverlay geofence;
+
+        //alterate RTL points
+        GMapOverlay alternateRTLLocations;
 
         // etc
         readonly Random rnd = new Random();
@@ -5060,5 +5064,24 @@ namespace ArdupilotMega.GCSViews
         {
             grid = chk_grid.Checked;
         }
+
+        private void addRTLLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           //alternateRTLLocations.Markers.Clear();
+
+          // alternateRTLLocations.Polygons
+          // GMapPolygon poly;
+
+           alternateRTLLocations.Markers.Add(new GMapMarkerGoogleGreen(new PointLatLng(MouseDownStart.Lat, MouseDownStart.Lng)) 
+               { ToolTipMode = MarkerTooltipMode.OnMouseOver, ToolTipText = "RTL Loc." });
+
+
+           GMapMarkerPlane shape = new GMapMarkerPlane(new PointLatLng(MouseDownStart.Lat, MouseDownStart.Lng), 0, 0, 0, 0, MainMap);
+           //shape.SetToolTip("RTL Loc.");  TODO: Add this tool tip.
+           alternateRTLLocations.Markers.Add(shape);
+
+            MainMap.Invalidate();
+        }
+
     }
 }
