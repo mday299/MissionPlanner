@@ -2,14 +2,14 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension" xmlns:difx="http://schemas.microsoft.com/wix/DifxAppExtension" xmlns:iis='http://schemas.microsoft.com/wix/IIsExtension' >
 
 
-    <Product Id="*" Name="Mission Planner" Language="1033" Version="1.2.74" Manufacturer="Michael Oborne" UpgradeCode="{625389D7-EB3C-4d77-A5F6-A285CF99437D}">
+    <Product Id="*" Name="Mission Planner" Language="1033" Version="1.2.76" Manufacturer="Michael Oborne" UpgradeCode="{625389D7-EB3C-4d77-A5F6-A285CF99437D}">
 
         <Package Description="Mission Planner Installer" Comments="Mission Planner Installer" Manufacturer="Michael Oborne" InstallerVersion="200" Compressed="yes" />
 
 
 <Upgrade Id="{625389D7-EB3C-4d77-A5F6-A285CF99437D}">
-    <UpgradeVersion OnlyDetect="yes" Minimum="1.2.74" Property="NEWERVERSIONDETECTED" IncludeMinimum="no" />
-    <UpgradeVersion OnlyDetect="no" Maximum="1.2.74" Property="OLDERVERSIONBEINGUPGRADED" IncludeMaximum="no" />
+    <UpgradeVersion OnlyDetect="yes" Minimum="1.2.76" Property="NEWERVERSIONDETECTED" IncludeMinimum="no" />
+    <UpgradeVersion OnlyDetect="no" Maximum="1.2.76" Property="OLDERVERSIONBEINGUPGRADED" IncludeMaximum="no" />
 </Upgrade>
 
 <InstallExecuteSequence>
@@ -31,7 +31,7 @@
                             <Permission User="Everyone" GenericAll="yes" /> 
                         </CreateFolder>
                     </Component>
-<Component Id="_comp1" Guid="68513b6c-9341-48ad-b03e-a794b6a192c0">
+<Component Id="_comp1" Guid="1dae5b6a-2448-4ea1-8c99-2e5a1d57f0b1">
 <File Id="_2" Source="..\bin\release\acsimplepids.xml" />
 <File Id="_3" Source="..\bin\release\alglibnet2.dll" />
 <File Id="_4" Source="..\bin\release\ArduCopterConfig.xml" />
@@ -56,189 +56,193 @@
 <File Id="_23" Source="..\bin\release\Core.pdb" />
 <File Id="_24" Source="..\bin\release\dataflashlog.xml" />
 <File Id="_25" Source="..\bin\release\DirectShowLib-2005.dll" />
-<File Id="_26" Source="..\bin\release\FirmwareHistory.txt" />
-<File Id="_27" Source="..\bin\release\GMap.NET.Core.dll" />
-<File Id="_28" Source="..\bin\release\GMap.NET.Core.xml" />
-<File Id="_29" Source="..\bin\release\GMap.NET.WindowsForms.dll" />
-<File Id="_30" Source="..\bin\release\GMap.NET.WindowsForms.xml" />
-<File Id="_31" Source="..\bin\release\hud.html" />
-<File Id="_32" Source="..\bin\release\ICSharpCode.SharpZipLib.dll" />
-<File Id="_33" Source="..\bin\release\IronPython.dll" />
-<File Id="_34" Source="..\bin\release\IronPython.Modules.dll" />
-<File Id="_35" Source="..\bin\release\KMLib.dll" />
-<File Id="_36" Source="..\bin\release\KMLib.pdb" />
-<File Id="_37" Source="..\bin\release\log4net.dll" />
-<File Id="_38" Source="..\bin\release\mavcmd.xml" />
-<File Id="_39" Source="..\bin\release\MAVLink.xml" />
-<File Id="_40" Source="..\bin\release\MetaDataExtractor.dll" />
-<File Id="_41" Source="..\bin\release\MetadataExtractor.dtd" />
-<File Id="_42" Source="..\bin\release\MetadataExtractorNew.dtd" />
-<File Id="_43" Source="..\bin\release\Microsoft.DirectX.DirectInput.dll" />
-<File Id="_44" Source="..\bin\release\Microsoft.DirectX.dll" />
-<File Id="_45" Source="..\bin\release\Microsoft.Dynamic.dll" />
-<File Id="_46" Source="..\bin\release\Microsoft.Scripting.Core.dll" />
-<File Id="_47" Source="..\bin\release\Microsoft.Scripting.Debugging.dll" />
-<File Id="_48" Source="..\bin\release\Microsoft.Scripting.dll" />
-<File Id="_49" Source="..\bin\release\Microsoft.Scripting.ExtensionAttribute.dll" />
-<File Id="_50" Source="..\bin\release\MissionPlanner.Comms.dll" />
-<File Id="_51" Source="..\bin\release\MissionPlanner.Comms.pdb" />
-<File Id="_52" Source="..\bin\release\MissionPlanner.Controls.dll" />
-<File Id="_53" Source="..\bin\release\MissionPlanner.Controls.pdb" />
-<File Id="_54" Source="..\bin\release\MissionPlanner.Utilities.dll" />
-<File Id="_55" Source="..\bin\release\MissionPlanner.Utilities.pdb" />
-<File Id="_56" Source="..\bin\release\netDxf.dll" />
-<File Id="_57" Source="..\bin\release\OpenTK.dll" />
-<File Id="_58" Source="..\bin\release\OpenTK.GLControl.dll" />
-<File Id="_59" Source="..\bin\release\ParameterMetaDataBackup.xml" />
-<File Id="_60" Source="..\bin\release\ProjNet.dll" />
-<File Id="_61" Source="..\bin\release\px4uploader.exe" />
-<File Id="_62" Source="..\bin\release\px4uploader.pdb" />
-<File Id="_63" Source="..\bin\release\quadhil.xml" />
-<File Id="_64" Source="..\bin\release\sampleFile.xml" />
-<File Id="_65" Source="..\bin\release\SharpKml.dll" />
-<File Id="_66" Source="..\bin\release\SharpKml.pdb" />
-<File Id="_67" Source="..\bin\release\SharpKml.xml" />
-<File Id="_68" Source="..\bin\release\System.Reactive.dll" />
-<File Id="_69" Source="..\bin\release\System.Reactive.xml" />
-<File Id="_70" Source="..\bin\release\System.Speech.dll" />
-<File Id="_71" Source="..\bin\release\Transitions.dll" />
-<File Id="_72" Source="..\bin\release\Updater.exe" />
-<File Id="_73" Source="..\bin\release\Updater.exe.config" />
-<File Id="_74" Source="..\bin\release\version.exe" />
-<File Id="_75" Source="..\bin\release\version.txt" />
-<File Id="_76" Source="..\bin\release\ZedGraph.dll" />
-<File Id="_77" Source="..\bin\release\ZedGraph.pdb" />
-<File Id="_78" Source="..\bin\release\ZedGraph.xml" />
+<File Id="_26" Source="..\bin\release\exif.xslt" />
+<File Id="_27" Source="..\bin\release\FirmwareHistory.txt" />
+<File Id="_28" Source="..\bin\release\GeoUtility.dll" />
+<File Id="_29" Source="..\bin\release\GeoUtility.pdb" />
+<File Id="_30" Source="..\bin\release\GeoUtility.xml" />
+<File Id="_31" Source="..\bin\release\GMap.NET.Core.dll" />
+<File Id="_32" Source="..\bin\release\GMap.NET.Core.xml" />
+<File Id="_33" Source="..\bin\release\GMap.NET.WindowsForms.dll" />
+<File Id="_34" Source="..\bin\release\GMap.NET.WindowsForms.xml" />
+<File Id="_35" Source="..\bin\release\hud.html" />
+<File Id="_36" Source="..\bin\release\ICSharpCode.SharpZipLib.dll" />
+<File Id="_37" Source="..\bin\release\IronPython.dll" />
+<File Id="_38" Source="..\bin\release\IronPython.Modules.dll" />
+<File Id="_39" Source="..\bin\release\KMLib.dll" />
+<File Id="_40" Source="..\bin\release\KMLib.pdb" />
+<File Id="_41" Source="..\bin\release\log4net.dll" />
+<File Id="_42" Source="..\bin\release\mavcmd.xml" />
+<File Id="_43" Source="..\bin\release\MAVLink.xml" />
+<File Id="_44" Source="..\bin\release\MetaDataExtractor.dll" />
+<File Id="_45" Source="..\bin\release\MetadataExtractor.dtd" />
+<File Id="_46" Source="..\bin\release\MetadataExtractorNew.dtd" />
+<File Id="_47" Source="..\bin\release\Microsoft.DirectX.DirectInput.dll" />
+<File Id="_48" Source="..\bin\release\Microsoft.DirectX.dll" />
+<File Id="_49" Source="..\bin\release\Microsoft.Dynamic.dll" />
+<File Id="_50" Source="..\bin\release\Microsoft.Scripting.Core.dll" />
+<File Id="_51" Source="..\bin\release\Microsoft.Scripting.Debugging.dll" />
+<File Id="_52" Source="..\bin\release\Microsoft.Scripting.dll" />
+<File Id="_53" Source="..\bin\release\Microsoft.Scripting.ExtensionAttribute.dll" />
+<File Id="_54" Source="..\bin\release\MissionPlanner.Comms.dll" />
+<File Id="_55" Source="..\bin\release\MissionPlanner.Comms.pdb" />
+<File Id="_56" Source="..\bin\release\MissionPlanner.Controls.dll" />
+<File Id="_57" Source="..\bin\release\MissionPlanner.Controls.pdb" />
+<File Id="_58" Source="..\bin\release\MissionPlanner.Utilities.dll" />
+<File Id="_59" Source="..\bin\release\MissionPlanner.Utilities.pdb" />
+<File Id="_60" Source="..\bin\release\netDxf.dll" />
+<File Id="_61" Source="..\bin\release\OpenTK.dll" />
+<File Id="_62" Source="..\bin\release\OpenTK.GLControl.dll" />
+<File Id="_63" Source="..\bin\release\ParameterMetaDataBackup.xml" />
+<File Id="_64" Source="..\bin\release\ProjNet.dll" />
+<File Id="_65" Source="..\bin\release\px4uploader.exe" />
+<File Id="_66" Source="..\bin\release\px4uploader.pdb" />
+<File Id="_67" Source="..\bin\release\quadhil.xml" />
+<File Id="_68" Source="..\bin\release\sampleFile.xml" />
+<File Id="_69" Source="..\bin\release\SharpKml.dll" />
+<File Id="_70" Source="..\bin\release\SharpKml.pdb" />
+<File Id="_71" Source="..\bin\release\SharpKml.xml" />
+<File Id="_72" Source="..\bin\release\System.Reactive.dll" />
+<File Id="_73" Source="..\bin\release\System.Reactive.xml" />
+<File Id="_74" Source="..\bin\release\System.Speech.dll" />
+<File Id="_75" Source="..\bin\release\Transitions.dll" />
+<File Id="_76" Source="..\bin\release\Updater.exe" />
+<File Id="_77" Source="..\bin\release\Updater.exe.config" />
+<File Id="_78" Source="..\bin\release\version.exe" />
+<File Id="_79" Source="..\bin\release\version.txt" />
+<File Id="_80" Source="..\bin\release\ZedGraph.dll" />
+<File Id="_81" Source="..\bin\release\ZedGraph.pdb" />
+<File Id="_82" Source="..\bin\release\ZedGraph.xml" />
 </Component>
-<Directory Id="de78" Name="de">
-<Component Id="_comp79" Guid="e3b00a14-57d0-4810-9098-3737fb3eb1fe">
-<File Id="_80" Source="..\bin\release\de\ZedGraph.resources.dll" />
-</Component>
-</Directory>
-<Directory Id="de_DE80" Name="de-DE">
-<Component Id="_comp81" Guid="fd27b140-587a-4827-9767-9274784411e2">
-<File Id="_82" Source="..\bin\release\de-DE\ArdupilotMegaPlanner10.resources.dll" />
-</Component>
-</Directory>
-<Directory Id="Driver82" Name="Driver">
-<Component Id="_comp83" Guid="a36d8fd4-4705-4f58-b07e-ada80c47251d">
-<File Id="_84" Source="..\bin\release\Driver\signed.cer" />
+<Directory Id="de82" Name="de">
+<Component Id="_comp83" Guid="c35d2cdd-4414-4178-aed7-f36d069f2da0">
+<File Id="_84" Source="..\bin\release\de\ZedGraph.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="es84" Name="es">
-<Component Id="_comp85" Guid="62b4ecc3-d4bc-488d-bc7b-4a5504c786f2">
-<File Id="_86" Source="..\bin\release\es\ZedGraph.resources.dll" />
+<Directory Id="de_DE84" Name="de-DE">
+<Component Id="_comp85" Guid="abfeaf79-631c-431f-8a23-d4d5a7a488b7">
+<File Id="_86" Source="..\bin\release\de-DE\ArdupilotMegaPlanner10.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="es_ES86" Name="es-ES">
-<Component Id="_comp87" Guid="9cd4594a-b880-459c-9d23-2ed764239ecc">
-<File Id="_88" Source="..\bin\release\es-ES\ArdupilotMegaPlanner10.resources.dll" />
+<Directory Id="Driver86" Name="Driver">
+<Component Id="_comp87" Guid="f96d1364-2f4d-49eb-bc4b-fde453b6834a">
+<File Id="_88" Source="..\bin\release\Driver\signed.cer" />
 </Component>
 </Directory>
-<Directory Id="fr88" Name="fr">
-<Component Id="_comp89" Guid="5cad0f81-74ce-4468-b9f3-1486c09cae87">
-<File Id="_90" Source="..\bin\release\fr\ArdupilotMegaPlanner10.resources.dll" />
-<File Id="_91" Source="..\bin\release\fr\ZedGraph.resources.dll" />
+<Directory Id="es88" Name="es">
+<Component Id="_comp89" Guid="a0b46e51-061d-4d40-959d-2e0b3df28e93">
+<File Id="_90" Source="..\bin\release\es\ZedGraph.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="hu91" Name="hu">
-<Component Id="_comp92" Guid="27440b28-f310-46e9-b9b1-10a4b9eaa4ef">
-<File Id="_93" Source="..\bin\release\hu\ZedGraph.resources.dll" />
+<Directory Id="es_ES90" Name="es-ES">
+<Component Id="_comp91" Guid="c46c0808-1b84-4b8e-9083-ad87d9f5d254">
+<File Id="_92" Source="..\bin\release\es-ES\ArdupilotMegaPlanner10.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="it93" Name="it">
-<Component Id="_comp94" Guid="c1362e83-909d-430a-bc57-b2c323750f1a">
-<File Id="_95" Source="..\bin\release\it\ZedGraph.resources.dll" />
+<Directory Id="fr92" Name="fr">
+<Component Id="_comp93" Guid="04babd06-b447-4d00-9585-a6962461349c">
+<File Id="_94" Source="..\bin\release\fr\ArdupilotMegaPlanner10.resources.dll" />
+<File Id="_95" Source="..\bin\release\fr\ZedGraph.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="it_IT95" Name="it-IT">
-<Component Id="_comp96" Guid="d40601c4-35fc-48b4-8b4f-335a53d1b109">
-<File Id="_97" Source="..\bin\release\it-IT\ArdupilotMegaPlanner10.resources.dll" />
+<Directory Id="hu95" Name="hu">
+<Component Id="_comp96" Guid="f02631ca-cb65-456e-b85d-feb27272771e">
+<File Id="_97" Source="..\bin\release\hu\ZedGraph.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="ja97" Name="ja">
-<Component Id="_comp98" Guid="bc29f8e4-959b-41f1-87a8-c2b9ee166f78">
-<File Id="_99" Source="..\bin\release\ja\ZedGraph.resources.dll" />
+<Directory Id="it97" Name="it">
+<Component Id="_comp98" Guid="2e121e69-ca59-4b3d-aead-d9aac9bd3628">
+<File Id="_99" Source="..\bin\release\it\ZedGraph.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="m3u99" Name="m3u">
-<Component Id="_comp100" Guid="91bd3109-e517-4ea3-ae07-29a0deb36787">
-<File Id="_101" Source="..\bin\release\m3u\both.m3u" />
-<File Id="_102" Source="..\bin\release\m3u\GeoRefnetworklink.kml" />
-<File Id="_103" Source="..\bin\release\m3u\hud.m3u" />
-<File Id="_104" Source="..\bin\release\m3u\map.m3u" />
-<File Id="_105" Source="..\bin\release\m3u\networklink.kml" />
+<Directory Id="it_IT99" Name="it-IT">
+<Component Id="_comp100" Guid="8ada213a-4cf5-44b9-a4f4-f721f609de3f">
+<File Id="_101" Source="..\bin\release\it-IT\ArdupilotMegaPlanner10.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="mavelous_web105" Name="mavelous_web">
-<Component Id="_comp106" Guid="6d8dcb4b-aa92-4ad9-be4c-3a4e37feb3c7">
-<File Id="_107" Source="..\bin\release\mavelous_web\index.html" />
+<Directory Id="ja101" Name="ja">
+<Component Id="_comp102" Guid="4b13df42-9fd5-4df4-bebb-ad4e8e89f73f">
+<File Id="_103" Source="..\bin\release\ja\ZedGraph.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="pl107" Name="pl">
-<Component Id="_comp108" Guid="4997db96-ab69-4962-a171-a3e3c70fa878">
-<File Id="_109" Source="..\bin\release\pl\ArdupilotMegaPlanner10.resources.dll" />
+<Directory Id="m3u103" Name="m3u">
+<Component Id="_comp104" Guid="ac1f79c4-f57f-4961-9642-6bf9c0d6148b">
+<File Id="_105" Source="..\bin\release\m3u\both.m3u" />
+<File Id="_106" Source="..\bin\release\m3u\GeoRefnetworklink.kml" />
+<File Id="_107" Source="..\bin\release\m3u\hud.m3u" />
+<File Id="_108" Source="..\bin\release\m3u\map.m3u" />
+<File Id="_109" Source="..\bin\release\m3u\networklink.kml" />
 </Component>
 </Directory>
-<Directory Id="plugins109" Name="plugins">
-<Component Id="_comp110" Guid="712cf2c6-235e-453d-abce-bb7d99698aae">
-<File Id="_111" Source="..\bin\release\plugins\MissionPlanner.Grid.dll" />
-<File Id="_112" Source="..\bin\release\plugins\MissionPlanner.Grid.pdb" />
-<File Id="_113" Source="..\bin\release\plugins\MissionPlanner.Stats.dll" />
-<File Id="_114" Source="..\bin\release\plugins\MissionPlanner.Stats.pdb" />
+<Directory Id="mavelous_web109" Name="mavelous_web">
+<Component Id="_comp110" Guid="f215b24a-89e4-46bc-8aed-0b39fc2e9397">
+<File Id="_111" Source="..\bin\release\mavelous_web\index.html" />
 </Component>
 </Directory>
-<Directory Id="pt114" Name="pt">
-<Component Id="_comp115" Guid="a7521aa8-d86c-42ed-9a40-57c0159113f6">
-<File Id="_116" Source="..\bin\release\pt\ZedGraph.resources.dll" />
+<Directory Id="pl111" Name="pl">
+<Component Id="_comp112" Guid="c7b4a492-c606-480b-8f02-526e892908af">
+<File Id="_113" Source="..\bin\release\pl\ArdupilotMegaPlanner10.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="Resources116" Name="Resources">
-<Component Id="_comp117" Guid="b6ae2366-e508-47b4-8013-d7f8e2213824">
-<File Id="_118" Source="..\bin\release\Resources\aw.png" />
-<File Id="_119" Source="..\bin\release\Resources\MAVCmd.txt" />
-<File Id="_120" Source="..\bin\release\Resources\Welcome_to_Michael_Oborne.rtf" />
+<Directory Id="plugins113" Name="plugins">
+<Component Id="_comp114" Guid="406163b0-6ee9-4e61-b290-bee62fe530bf">
+<File Id="_115" Source="..\bin\release\plugins\MissionPlanner.Grid.dll" />
+<File Id="_116" Source="..\bin\release\plugins\MissionPlanner.Grid.pdb" />
+<File Id="_117" Source="..\bin\release\plugins\MissionPlanner.Stats.dll" />
+<File Id="_118" Source="..\bin\release\plugins\MissionPlanner.Stats.pdb" />
 </Component>
 </Directory>
-<Directory Id="ru120" Name="ru">
-<Component Id="_comp121" Guid="c75ee30d-cca9-4319-b5a2-be0a3fe1f0f5">
-<File Id="_122" Source="..\bin\release\ru\ZedGraph.resources.dll" />
+<Directory Id="pt118" Name="pt">
+<Component Id="_comp119" Guid="dd2e70c7-ef50-436a-8e08-bc0c47ee2961">
+<File Id="_120" Source="..\bin\release\pt\ZedGraph.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="ru_RU122" Name="ru-RU">
-<Component Id="_comp123" Guid="8f59b444-cf74-4192-bf67-0fb0a964947c">
-<File Id="_124" Source="..\bin\release\ru-RU\ArdupilotMegaPlanner10.resources.dll" />
+<Directory Id="Resources120" Name="Resources">
+<Component Id="_comp121" Guid="511996f9-ca08-49d5-b470-6e137a664570">
+<File Id="_122" Source="..\bin\release\Resources\aw.png" />
+<File Id="_123" Source="..\bin\release\Resources\MAVCmd.txt" />
+<File Id="_124" Source="..\bin\release\Resources\Welcome_to_Michael_Oborne.rtf" />
 </Component>
 </Directory>
-<Directory Id="sk124" Name="sk">
-<Component Id="_comp125" Guid="2220a606-9c40-4883-ab0b-8ed01169aa5c">
-<File Id="_126" Source="..\bin\release\sk\ZedGraph.resources.dll" />
+<Directory Id="ru124" Name="ru">
+<Component Id="_comp125" Guid="a7708c57-4f49-4d6c-aa4d-6e2d5591bb54">
+<File Id="_126" Source="..\bin\release\ru\ZedGraph.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="sv126" Name="sv">
-<Component Id="_comp127" Guid="d4493420-8e41-4b7a-90ff-ef19015e42c3">
-<File Id="_128" Source="..\bin\release\sv\ZedGraph.resources.dll" />
+<Directory Id="ru_RU126" Name="ru-RU">
+<Component Id="_comp127" Guid="27535e6a-3a13-4ac8-949a-f2c67744c92f">
+<File Id="_128" Source="..\bin\release\ru-RU\ArdupilotMegaPlanner10.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="tr128" Name="tr">
-<Component Id="_comp129" Guid="282ab128-4d63-4228-8804-38198852183a">
-<File Id="_130" Source="..\bin\release\tr\ZedGraph.resources.dll" />
+<Directory Id="sk128" Name="sk">
+<Component Id="_comp129" Guid="13cf49b1-c733-4133-acd8-b6f887c2814c">
+<File Id="_130" Source="..\bin\release\sk\ZedGraph.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="zh_cn130" Name="zh-cn">
-<Component Id="_comp131" Guid="a8f78cb1-0884-4130-b847-f27e7a75bfef">
-<File Id="_132" Source="..\bin\release\zh-cn\ZedGraph.resources.dll" />
+<Directory Id="sv130" Name="sv">
+<Component Id="_comp131" Guid="1ab8ddb0-bac9-49b2-8786-5f7d962e487d">
+<File Id="_132" Source="..\bin\release\sv\ZedGraph.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="zh_Hans132" Name="zh-Hans">
-<Component Id="_comp133" Guid="31fe40b2-0628-46ae-bdd6-8293cecb74ed">
-<File Id="_134" Source="..\bin\release\zh-Hans\ArdupilotMegaPlanner10.resources.dll" />
+<Directory Id="tr132" Name="tr">
+<Component Id="_comp133" Guid="3ff3b145-f3f1-4657-a1cf-5baaea074245">
+<File Id="_134" Source="..\bin\release\tr\ZedGraph.resources.dll" />
 </Component>
 </Directory>
-<Directory Id="zh_tw134" Name="zh-tw">
-<Component Id="_comp135" Guid="742b541c-c565-4d15-b6dc-18bf914c6cd8">
-<File Id="_136" Source="..\bin\release\zh-tw\ArdupilotMegaPlanner10.resources.dll" />
-<File Id="_137" Source="..\bin\release\zh-tw\ZedGraph.resources.dll" />
+<Directory Id="zh_cn134" Name="zh-cn">
+<Component Id="_comp135" Guid="2a8aafad-04c5-469e-90e3-cff11be034f2">
+<File Id="_136" Source="..\bin\release\zh-cn\ZedGraph.resources.dll" />
+</Component>
+</Directory>
+<Directory Id="zh_Hans136" Name="zh-Hans">
+<Component Id="_comp137" Guid="f13d247c-52d8-438a-80a7-45bb781b573c">
+<File Id="_138" Source="..\bin\release\zh-Hans\ArdupilotMegaPlanner10.resources.dll" />
+</Component>
+</Directory>
+<Directory Id="zh_tw138" Name="zh-tw">
+<Component Id="_comp139" Guid="3d0b26aa-9b62-4f3c-b93b-55aa73f6432d">
+<File Id="_140" Source="..\bin\release\zh-tw\ArdupilotMegaPlanner10.resources.dll" />
+<File Id="_141" Source="..\bin\release\zh-tw\ZedGraph.resources.dll" />
 </Component>
 </Directory>
 
@@ -296,30 +300,30 @@
             <ComponentRef Id="InstallDirPermissions" />
 
 <ComponentRef Id="_comp1" />
-<ComponentRef Id="_comp79" />
-<ComponentRef Id="_comp81" />
 <ComponentRef Id="_comp83" />
 <ComponentRef Id="_comp85" />
 <ComponentRef Id="_comp87" />
 <ComponentRef Id="_comp89" />
-<ComponentRef Id="_comp92" />
-<ComponentRef Id="_comp94" />
+<ComponentRef Id="_comp91" />
+<ComponentRef Id="_comp93" />
 <ComponentRef Id="_comp96" />
 <ComponentRef Id="_comp98" />
 <ComponentRef Id="_comp100" />
-<ComponentRef Id="_comp106" />
-<ComponentRef Id="_comp108" />
+<ComponentRef Id="_comp102" />
+<ComponentRef Id="_comp104" />
 <ComponentRef Id="_comp110" />
-<ComponentRef Id="_comp115" />
-<ComponentRef Id="_comp117" />
+<ComponentRef Id="_comp112" />
+<ComponentRef Id="_comp114" />
+<ComponentRef Id="_comp119" />
 <ComponentRef Id="_comp121" />
-<ComponentRef Id="_comp123" />
 <ComponentRef Id="_comp125" />
 <ComponentRef Id="_comp127" />
 <ComponentRef Id="_comp129" />
 <ComponentRef Id="_comp131" />
 <ComponentRef Id="_comp133" />
 <ComponentRef Id="_comp135" />
+<ComponentRef Id="_comp137" />
+<ComponentRef Id="_comp139" />
 
             
             <ComponentRef Id="ApplicationShortcut" />

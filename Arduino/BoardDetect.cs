@@ -11,101 +11,26 @@ using MissionPlanner.Utilities;
 
 namespace ArdupilotMega.Arduino
 {
-    public class ArduinoDetect
+    public class BoardDetect
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        /// <summary>
-        /// detects STK version 1 or 2
-        /// </summary>
-        /// <param name="port">comportname</param>
-        /// <returns>string either (1280/2560) or "" for none</returns>
-        public static string DetectVersion(string port)
+
+        public enum boards
         {
-            SerialPort serialPort = new SerialPort();
-            serialPort.PortName = port;
-
-            if (serialPort.IsOpen)
-                serialPort.Close();
-
-            serialPort.DtrEnable = true;
-            serialPort.BaudRate = 57600;
-            serialPort.Open();
-
-            serialPort.toggleDTR();
-
-            Thread.Sleep(100);
-
-            int a = 0;
-            while (a < 20) // 20 * 50 = 1 sec
-            {
-                //Console.WriteLine("write " + DateTime.Now.Millisecond);
-                serialPort.DiscardInBuffer();
-                serialPort.Write(new byte[] { (byte)'0', (byte)' ' }, 0, 2);
-                a++;
-                Thread.Sleep(50);
-
-                //Console.WriteLine("btr {0}", serialPort.BytesToRead);
-                if (serialPort.BytesToRead >= 2)
-                {
-                    byte b1 = (byte)serialPort.ReadByte();
-                    byte b2 = (byte)serialPort.ReadByte();
-                    if (b1 == 0x14 && b2 == 0x10)
-                    {
-                        serialPort.Close();
-                        log.Info("is a 1280");
-                        return "1280";
-                    }
-                }
-            }
-
-            serialPort.Close();
-
-            log.Warn("Not a 1280");
-
-            Thread.Sleep(500);
-
-            serialPort.DtrEnable = true;
-            serialPort.BaudRate = 115200;
-            serialPort.Open();
-
-            serialPort.toggleDTR();
-
-            Thread.Sleep(100);
-
-            a = 0;
-            while (a < 4)
-            {
-                byte[] temp = new byte[] { 0x6, 0, 0, 0, 0 };
-                temp = ArduinoDetect.genstkv2packet(serialPort, temp);
-                a++;
-                Thread.Sleep(50);
-
-                try
-                {
-                    if (temp[0] == 6 && temp[1] == 0 && temp.Length == 2)
-                    {
-                        serialPort.Close();
-                        log.Info("is a 2560");
-                        return "2560";
-
-                    }
-                }
-                catch
-                {
-                }
-            }
-
-            serialPort.Close();
-            log.Warn("Not a 2560");
-            return "";
+            none = 0,
+            b1280, // apm1
+            b2560, // apm1
+            b2560v2, // apm 2+
+            px4, // px3
+            px4v2, // pixhawk
         }
 
         /// <summary>
         /// Detects APM board version
         /// </summary>
         /// <param name="port"></param>
-        /// <returns> (1280/2560/2560-2/px4)</returns>
-        public static string DetectBoard(string port)
+        /// <returns> (1280/2560/2560-2/px4/px4v2)</returns>
+        public static boards DetectBoard(string port)
         {
             SerialPort serialPort = new SerialPort();
             serialPort.PortName = port;
@@ -125,19 +50,34 @@ namespace ArdupilotMega.Arduino
                         if (obj2.Properties["Name"].Value.ToString().ToUpper().Contains(serialPort.PortName.ToUpper()))
                         {
                             log.Info("is a 2560-2");
-                            return "2560-2";
+                            return boards.b2560v2;
                         }
                     }
 
-                    if (obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0010") || obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0011") || obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0012") || obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0013") || obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0014") || obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0015") || obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0016"))
+                    if (obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0010"))
                     {
                         // check port name as well
                         //if (obj2.Properties["Name"].Value.ToString().ToUpper().Contains(serialPort.PortName.ToUpper()))
                         {
                             log.Info("is a px4");
-                            return "px4";
+                            return boards.px4;
                         }
                     }
+
+                    if (obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0011"))
+                    {
+                        log.Info("is a px4v2");
+                        return boards.px4v2;
+                    }
+
+                    if (obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0001"))
+                    {
+                        log.Info("is a px4v2 bootloader");
+                        return boards.px4v2;
+                    }
+
+                    //|| obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0012") || obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0013") || obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0014") || obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0015") || obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0016")
+
                 }
 
             }
@@ -169,7 +109,7 @@ namespace ArdupilotMega.Arduino
                     {
                         serialPort.Close();
                         log.Info("is a 1280");
-                        return "1280";
+                        return boards.b1280;
                     }
                 }
             }
@@ -190,7 +130,7 @@ namespace ArdupilotMega.Arduino
             while (a < 4)
             {
                 byte[] temp = new byte[] { 0x6, 0, 0, 0, 0 };
-                temp = ArduinoDetect.genstkv2packet(serialPort, temp);
+                temp = BoardDetect.genstkv2packet(serialPort, temp);
                 a++;
                 Thread.Sleep(50);
 
@@ -226,39 +166,33 @@ namespace ArdupilotMega.Arduino
                                     if (obj2.Properties["Name"].Value.ToString().ToUpper().Contains(serialPort.PortName.ToUpper()))
                                     {
                                         log.Info("is a 2560-2");
-                                        return "2560-2";
-                                    }
-                                }
-
-                                if (obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0010"))
-                                {
-                                    // check port name as well
-                                    if (obj2.Properties["Name"].Value.ToString().ToUpper().Contains(serialPort.PortName.ToUpper()))
-                                    {
-                                        log.Info("is a px4");
-                                        return "px4";
+                                        return boards.b2560v2;
                                     }
                                 }
                             }
 
                             log.Info("is a 2560");
-                            return "2560";
+                            return boards.b2560;
                         }
                         else
                         {
                             if (DialogResult.Yes == CustomMessageBox.Show("Is this a APM 2+?", "APM 2+", MessageBoxButtons.YesNo))
                             {
-                                return "2560-2";
+                                return boards.b2560v2;
                             }
                             else
                             {
                                 if (DialogResult.Yes == CustomMessageBox.Show("Is this a PX4?", "PX4", MessageBoxButtons.YesNo))
                                 {
-                                    return "px4";
+                                    if (DialogResult.Yes == CustomMessageBox.Show("Is this a PIXHAWK?", "PIXHAWK", MessageBoxButtons.YesNo))
+                                    {
+                                        return boards.px4v2;
+                                    }
+                                    return boards.px4;
                                 }
                                 else
                                 {
-                                    return "2560";
+                                    return boards.b2560;
                                 }
                             }
                         }
@@ -273,7 +207,7 @@ namespace ArdupilotMega.Arduino
 
 
 
-            return "";
+            return boards.none;
         }
 
         public enum ap_var_type
@@ -323,15 +257,15 @@ namespace ArdupilotMega.Arduino
         /// <param name="comport">Port</param>
         /// <param name="version">Board type</param>
         /// <returns></returns>
-        public static int decodeApVar(string comport, string version)
+      public static int decodeApVar(string comport, BoardDetect.boards version)
         {
             IArduinoComms port = new ArduinoSTK();
-            if (version == "1280")
+            if (version == boards.b1280)
             {
                 port = new ArduinoSTK();
                 port.BaudRate = 57600;
             }
-            else if (version == "2560" || version == "2560-2")
+            else if (version == boards.b2560 || version == boards.b2560v2)
             {
                 port = new ArduinoSTKv2();
                 port.BaudRate = 115200;
@@ -447,9 +381,9 @@ namespace ArdupilotMega.Arduino
                         pos++;
                         pos++;
 
-                        int size = ArduinoDetect.type_size((ArduinoDetect.ap_var_type)Enum.Parse(typeof(ArduinoDetect.ap_var_type), type.ToString()));
+                        int size = BoardDetect.type_size((BoardDetect.ap_var_type)Enum.Parse(typeof(BoardDetect.ap_var_type), type.ToString()));
 
-                            Console.Write("{0:X4}: type {1} ({2}) key {3} group_element {4} size {5} value ", pos - 4, type, ArduinoDetect.type_names[type], key, group, size);
+                            Console.Write("{0:X4}: type {1} ({2}) key {3} group_element {4} size {5} value ", pos - 4, type, BoardDetect.type_names[type], key, group, size);
 
                         if (key == 0)
                         {
@@ -505,7 +439,7 @@ namespace ArdupilotMega.Arduino
             serialPort.Write(data, 0, a);
             //Console.WriteLine("about to read packet");
 
-            byte[] ret = ArduinoDetect.readpacket(serialPort);
+            byte[] ret = BoardDetect.readpacket(serialPort);
 
             //if (ret[1] == 0x0)
             {
